@@ -66,3 +66,24 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.card-list {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.pokemon-card {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  width: 150px;
+  text-align: center;
+  border-radius: 8px;
+  background: #f9f9f9;
+}
+
+.pokemon-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}

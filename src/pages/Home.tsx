@@ -1,10 +1,23 @@
-import { cartStore } from '../store/cartStore'
+import { useEffect } from 'react'
+import { observer } from 'mobx-react-lite'
+import { pokemonStore } from '../store/pokemonStore'
+import PokemonCard from '../components/PokemonCard'
 
-export default function Home() {
+const Home = observer(() => {
+  useEffect(() => {
+    pokemonStore.loadPokemons()
+  }, [])
+
   return (
     <div>
-      <h1>Welcome to Pokémon Cart</h1>
-      <button onClick={() => cartStore.addItem('Pikachu')}>Add Pikachu</button>
+      <h1>Pokémon Card List</h1>
+      <div className="card-list">
+        {pokemonStore.pokemons.map((p, index) => (
+          <PokemonCard key={index} name={p.name} imageUrl={p.imageUrl} />
+        ))}
+      </div>
     </div>
   )
-}
+})
+
+export default Home
