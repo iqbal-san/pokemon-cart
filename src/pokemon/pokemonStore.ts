@@ -1,4 +1,5 @@
 import { makeAutoObservable } from 'mobx'
+import { Pokemon } from './types'
 
 type Pokemon = {
   name: string

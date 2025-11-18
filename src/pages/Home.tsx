@@ -1,9 +1,7 @@
 import { useEffect } from 'react'
-import { observer } from 'mobx-react-lite'
-import { pokemonStore } from '../store/pokemonStore'
-import PokemonCard from '../components/PokemonCard'
+import { PokemonList, pokemonStore } from '../pokemon'
 
-const Home = observer(() => {
+export default function Home() {
   useEffect(() => {
     pokemonStore.loadPokemons()
   }, [])
@@ -11,13 +9,7 @@ const Home = observer(() => {
   return (
     <div>
       <h1>Pokémon Card List</h1>
-      <div className="card-list">
-        {pokemonStore.pokemons.map((p, index) => (
-          <PokemonCard key={index} name={p.name} imageUrl={p.imageUrl} />
-        ))}
-      </div>
+      <PokemonList />
     </div>
   )
-})
-
-export default Home
+}
