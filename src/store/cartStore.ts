@@ -7,8 +7,13 @@ class CartStore {
     makeAutoObservable(this)
   }
 
-  addItem(item: string) {
-    this.items.push(item)
+  addItem(item: CartItem) {
+    const existing = this.items.find(i => i.name === item.name)
+    if (existing) {
+        existing.quantity += item.quantity
+    } else {
+        this.items.push({ ...item })
+    }
   }
 
   removeItem(index: number) {
