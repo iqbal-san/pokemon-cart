@@ -1,6 +1,6 @@
 import { Routes, Route, Link } from 'react-router-dom'
 import Home from './pages/Home'
-import Cart from './pages/Cart'
+import { Cart } from './cart'
 
 function App() {
   return (
