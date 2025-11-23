@@ -1,5 +1,11 @@
+// src/cart/cartStore.ts
 import { makeAutoObservable } from 'mobx'
-import type { CartItem } from './types'
+
+export interface CartItem {
+  name: string
+  imageUrl: string
+  quantity: number
+}
 
 class CartStore {
   items: CartItem[] = []
@@ -9,15 +15,27 @@ class CartStore {
   }
 
   addItem(item: CartItem) {
-    this.items.push(item)
+    const existing = this.items.find(i => i.name === item.name)
+    if (existing) {
+      existing.quantity += item.quantity
+    } else {
+      this.items.push({ ...item })
+    }
   }
 
   removeItem(name: string) {
     this.items = this.items.filter(i => i.name !== name)
   }
 
-  clearCart() {
-    this.items = []
+  decrementItem(name: string) {
+    const item = this.items.find(i => i.name === name)
+    if (item) {
+      if (item.quantity > 1) {
+        item.quantity--
+      } else {
+        this.removeItem(name)
+      }
+    }
   }
 }
 
