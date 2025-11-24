@@ -10,6 +10,8 @@ const Header = observer(() => (
     <Link to="/cart" style={{ textDecoration: 'none' }}>
       🛒 Cart: {cartStore.items.length} items
     </Link>
+    <p>Total Items: {cartStore.totalItems}</p>
+    <p>Total Price: ${cartStore.totalPrice}</p>
   </header>
 ))
 

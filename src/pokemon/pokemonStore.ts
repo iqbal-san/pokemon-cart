@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx'
-import type { Pokemon } from './types'
+import type { Pokemon } from '../types/pokemon'
 
 class PokemonStore {
   pokemons: Pokemon[] = []

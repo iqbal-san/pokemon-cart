@@ -1,5 +1,5 @@
 // src/cart/CartItem.tsx
-import type { CartItem as Item } from './types'
+import type { CartItem as Item } from '../types/cart'
 
 export default function CartItem({ name, imageUrl, quantity }: Item) {
   return (

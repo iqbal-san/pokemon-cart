@@ -1,16 +1,17 @@
-// src/pokemon/PokemonCard.tsx
-import { cartStore } from '../cart'
+import type { FC } from 'react'
 
-function PokemonCard({ data }) {
-  const handleAdd = () => {
-    cartStore.addItem({ ...data, quantity: 1 })
-  }
-
-  return (
-    <div>
-      <img src={data.imageUrl} alt={data.name} />
-      <h3>{data.name}</h3>
-      <button onClick={handleAdd}>Add to Cart</button>
-    </div>
-  )
+interface PokemonCardProps {
+  name: string
+  imageUrl: string
+  price: number
 }
+
+const PokemonCard: FC<PokemonCardProps> = ({ name, imageUrl }) => (
+  <div className="pokemon-card">
+    <img src={imageUrl} alt={name} />
+    <h3>{name}</h3>
+    <p>Price: ${price}</p>
+  </div>
+)
+
+export default PokemonCard  

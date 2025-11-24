@@ -5,7 +5,12 @@ import PokemonCard from './PokemonCard'
 const PokemonList = observer(() => (
   <div className="card-list">
     {pokemonStore.pokemons.map((p, i) => (
-      <PokemonCard key={i} name={p.name} imageUrl={p.imageUrl} />
+      <PokemonCard
+        key={i}
+        name={p.name}
+        imageUrl={p.imageUrl}
+        price={p.price}
+      />
     ))}
   </div>
 ))

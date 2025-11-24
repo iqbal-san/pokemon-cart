@@ -1,11 +1,5 @@
-// src/cart/cartStore.ts
 import { makeAutoObservable } from 'mobx'
-
-export interface CartItem {
-  name: string
-  imageUrl: string
-  quantity: number
-}
+import type { CartItem } from '../types/cart'
 
 class CartStore {
   items: CartItem[] = []
@@ -36,6 +30,15 @@ class CartStore {
         this.removeItem(name)
       }
     }
+  }
+
+  // Computed values
+  get totalItems(): number {
+    return this.items.reduce((sum, item) => sum + item.quantity, 0)
+  }
+
+  get totalPrice(): number {
+    return this.items.reduce((sum, item) => sum + item.quantity * item.price, 0)
   }
 }
 
