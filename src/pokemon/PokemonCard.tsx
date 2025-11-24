@@ -6,7 +6,7 @@ interface PokemonCardProps {
   price: number
 }
 
-const PokemonCard: FC<PokemonCardProps> = ({ name, imageUrl }) => (
+const PokemonCard: FC<PokemonCardProps> = ({ name, imageUrl, price }) => (
   <div className="pokemon-card">
     <img src={imageUrl} alt={name} />
     <h3>{name}</h3>

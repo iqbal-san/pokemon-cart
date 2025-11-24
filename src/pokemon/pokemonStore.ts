@@ -10,9 +10,9 @@ class PokemonStore {
 
   loadPokemons() {
     this.pokemons = [
-      { name: 'Pikachu', imageUrl: 'https://img.pokemondb.net/artwork/pikachu.jpg' },
-      { name: 'Charmander', imageUrl: 'https://img.pokemondb.net/artwork/charmander.jpg' },
-      { name: 'Bulbasaur', imageUrl: 'https://img.pokemondb.net/artwork/bulbasaur.jpg' },
+      { name: 'Pikachu', imageUrl: 'https://img.pokemondb.net/artwork/pikachu.jpg', price: 10 },
+      { name: 'Charmander', imageUrl: 'https://img.pokemondb.net/artwork/charmander.jpg', price: 12 },
+      { name: 'Bulbasaur', imageUrl: 'https://img.pokemondb.net/artwork/bulbasaur.jpg', price: 8 },
     ]
   }
 }
