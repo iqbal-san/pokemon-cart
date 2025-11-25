@@ -1,19 +1,38 @@
-import { makeAutoObservable } from 'mobx'
-import type { Pokemon } from '../types/pokemon'
+import { makeAutoObservable } from "mobx"
+import type { Pokemon } from "../types/pokemon"
+
+const defaultPokemons: Pokemon[] = [
+  { name: "Charmander", imageUrl: "charmander.png", price: 100 },
+  { name: "Squirtle", imageUrl: "squirtle.png", price: 120 },
+  { name: "Bulbasaur", imageUrl: "bulbasaur.png", price: 90 }
+]
 
 class PokemonStore {
   pokemons: Pokemon[] = []
 
   constructor() {
     makeAutoObservable(this)
+    this.load()
   }
 
-  loadPokemons() {
-    this.pokemons = [
-      { name: 'Pikachu', imageUrl: 'https://img.pokemondb.net/artwork/pikachu.jpg', price: 10 },
-      { name: 'Charmander', imageUrl: 'https://img.pokemondb.net/artwork/charmander.jpg', price: 12 },
-      { name: 'Bulbasaur', imageUrl: 'https://img.pokemondb.net/artwork/bulbasaur.jpg', price: 8 },
-    ]
+  setPokemons(pokemons: Pokemon[]) {
+    this.pokemons = pokemons
+    this.save()
+  }
+
+  save() {
+    localStorage.setItem("pokemons", JSON.stringify(this.pokemons))
+  }
+
+  load() {
+    const data = localStorage.getItem("pokemons")
+    if (data) {
+      this.pokemons = JSON.parse(data)
+    } else {
+      // Seed with defaults if nothing in localStorage
+      this.pokemons = defaultPokemons
+      this.save()
+    }
   }
 }
 
