@@ -2,9 +2,10 @@ import { makeAutoObservable } from "mobx"
 import type { Pokemon } from "../types/pokemon"
 
 const defaultPokemons: Pokemon[] = [
-  { name: "Charmander", imageUrl: "charmander.png", price: 100 },
-  { name: "Squirtle", imageUrl: "squirtle.png", price: 120 },
-  { name: "Bulbasaur", imageUrl: "bulbasaur.png", price: 90 }
+  { name: "Pikachu", imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png", price: 10 },
+  { name: "Charmander", imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png", price: 12 },
+  { name: "Bulbasaur", imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png", price: 8 },
+  { name: "Squirtle", imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png", price: 9 }
 ]
 
 class PokemonStore {
@@ -33,6 +34,12 @@ class PokemonStore {
       this.pokemons = defaultPokemons
       this.save()
     }
+  }
+
+  reset() {
+    localStorage.removeItem("pokemons")
+    this.pokemons = defaultPokemons
+    this.save()
   }
 }
 

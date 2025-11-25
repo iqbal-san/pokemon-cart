@@ -3,12 +3,13 @@ import { PokemonList, pokemonStore } from '../pokemon'
 
 export default function Home() {
   useEffect(() => {
-    pokemonStore.loadPokemons()
+    pokemonStore.load()
   }, [])
 
   return (
     <div>
       <h1>Pokémon Card List</h1>
+      <button onClick={() => pokemonStore.reset()}>Reset Store</button>
       <PokemonList />
     </div>
   )
