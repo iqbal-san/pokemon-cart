@@ -38,6 +38,8 @@ const Cart = observer(() => {
       )}
       <p>Total Items: {cartStore.totalItems}</p>
       <p>Total Price: ${cartStore.totalPrice}</p>
+
+      <button onClick={() => cartStore.reset()}>Reset Cart</button>
     </div>
   )
 })

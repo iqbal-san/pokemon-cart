@@ -64,6 +64,12 @@ class CartStore {
       this.items = JSON.parse(data)
     }
   }
+  
+  reset() {
+    localStorage.removeItem("cart")
+    this.items = []
+    this.save()
+  }
 }
 
 export const cartStore = new CartStore()
