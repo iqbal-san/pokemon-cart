@@ -1,5 +1,11 @@
 import { useEffect } from 'react'
 import { PokemonList, pokemonStore } from '../pokemon'
+import { cartStore } from '../cart/cartStore'
+
+export function resetAll() {
+  pokemonStore.reset()
+  cartStore.reset()
+}
 
 export default function Home() {
   useEffect(() => {
@@ -9,7 +15,8 @@ export default function Home() {
   return (
     <div>
       <h1>Pokémon Card List</h1>
-      <button onClick={() => pokemonStore.reset()}>Reset Store</button>
+      <button onClick={resetAll}>Reset All</button>
+
       <PokemonList />
     </div>
   )
