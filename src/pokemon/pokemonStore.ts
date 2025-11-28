@@ -5,6 +5,7 @@ const defaultPokemons: Pokemon[] = [
   {
     name: "Pikachu",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+    detailImageUrl: "https://img.pokemondb.net/artwork/pikachu.jpg",
     price: 10,
     element: "Electric",
     description: "A lively Electric-type Pokémon known for its powerful Thunderbolt attack."
@@ -12,6 +13,7 @@ const defaultPokemons: Pokemon[] = [
   {
     name: "Charmander",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
+    detailImageUrl: "https://img.pokemondb.net/artwork/charmander.jpg",
     price: 12,
     element: "Fire",
     description: "A Fire-type Pokémon with a flame on its tail that burns brighter when it battles."
@@ -19,6 +21,7 @@ const defaultPokemons: Pokemon[] = [
   {
     name: "Bulbasaur",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+    detailImageUrl: "https://img.pokemondb.net/artwork/bulbasaur.jpg",
     price: 8,
     element: "Grass",
     description: "A Grass-type Pokémon that grows a plant bulb on its back, storing energy for evolution."
@@ -26,6 +29,7 @@ const defaultPokemons: Pokemon[] = [
   {
     name: "Squirtle",
     imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
+    detailImageUrl: "https://img.pokemondb.net/artwork/squirtle.jpg",
     price: 9,
     element: "Water",
     description: "A Water-type Pokémon that withdraws into its shell and sprays water at opponents."

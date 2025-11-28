@@ -1,5 +1,7 @@
 import type { FC } from 'react'
 import { cartStore } from '../cart/cartStore'
+import { Link } from 'react-router-dom'
+
 
 interface PokemonCardProps {
   name: string
@@ -14,8 +16,10 @@ const PokemonCard: FC<PokemonCardProps> = ({ name, imageUrl, price }) => {
 
   return (
     <div className="pokemon-card">
-      <img src={imageUrl} alt={name} />
-      <h3>{name}</h3>
+      <Link to={`/pokemon/${name}`}>
+        <img src={imageUrl} alt={name} />
+        <h3>{name}</h3>
+      </Link>
       <p>Price: ${price}</p>
       <button onClick={handleAddToCart}>Add Item</button>
     </div>
