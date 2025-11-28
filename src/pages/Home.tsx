@@ -39,6 +39,20 @@ const Home = observer(() => {
         <option value="Grass">Grass</option>
         <option value="Electric">Electric</option>
       </select>
+      
+      {/* Price range filter */}
+      <input
+        type="number"
+        placeholder="Min Price"
+        value={pokemonStore.minPrice ?? ""}
+        onChange={e => pokemonStore.setMinPrice(e.target.value)}
+      />
+      <input
+        type="number"
+        placeholder="Max Price"
+        value={pokemonStore.maxPrice ?? ""}
+        onChange={e => pokemonStore.setMaxPrice(e.target.value)}
+      />
 
       <PokemonList />
     </div>

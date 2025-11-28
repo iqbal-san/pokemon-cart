@@ -12,6 +12,8 @@ class PokemonStore {
   pokemons: Pokemon[] = []
   filter: string = ""
   elementFilter: string = ""
+  minPrice: number | null = null
+  maxPrice: number | null = null
 
   constructor() {
     makeAutoObservable(this)
@@ -31,7 +33,14 @@ class PokemonStore {
     this.elementFilter = element
   }
 
-  
+  setMinPrice(value: string) {
+    this.minPrice = value ? parseFloat(value) : null
+  }
+
+  setMaxPrice(value: string) {
+    this.maxPrice = value ? parseFloat(value) : null
+  }
+
   get filteredPokemons() {
     let result = this.pokemons
 
@@ -41,6 +50,14 @@ class PokemonStore {
 
     if (this.elementFilter) {
       result = result.filter(p => p.element === this.elementFilter)
+    }
+
+    // Filter by price range
+    if (this.minPrice !== null) {
+      result = result.filter(p => p.price >= this.minPrice)
+    }
+    if (this.maxPrice !== null) {
+      result = result.filter(p => p.price <= this.maxPrice)
     }
 
     return result
