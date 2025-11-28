@@ -18,7 +18,8 @@ const Home = observer(() => {
   return (
     <div>
       <h1>Pokémon Card List</h1>
-      <button onClick={resetAll}>Reset All</button>
+      <button onClick={resetAll}>Reset Site</button>
+      <br /><br />
 
       {/* Search filter */}
       <input
@@ -39,7 +40,7 @@ const Home = observer(() => {
         <option value="Grass">Grass</option>
         <option value="Electric">Electric</option>
       </select>
-      
+
       {/* Price range filter */}
       <input
         type="number"

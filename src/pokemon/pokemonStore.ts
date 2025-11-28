@@ -2,10 +2,34 @@ import { makeAutoObservable } from "mobx"
 import type { Pokemon } from "../types/pokemon"
 
 const defaultPokemons: Pokemon[] = [
-  { name: "Pikachu", imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png", price: 10, element: "Electric" },
-  { name: "Charmander", imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png", price: 12, element: "Fire" },
-  { name: "Bulbasaur", imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png", price: 8, element: "Grass" },
-  { name: "Squirtle", imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png", price: 9, element: "Water" }
+  {
+    name: "Pikachu",
+    imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+    price: 10,
+    element: "Electric",
+    description: "A lively Electric-type Pokémon known for its powerful Thunderbolt attack."
+  },
+  {
+    name: "Charmander",
+    imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
+    price: 12,
+    element: "Fire",
+    description: "A Fire-type Pokémon with a flame on its tail that burns brighter when it battles."
+  },
+  {
+    name: "Bulbasaur",
+    imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+    price: 8,
+    element: "Grass",
+    description: "A Grass-type Pokémon that grows a plant bulb on its back, storing energy for evolution."
+  },
+  {
+    name: "Squirtle",
+    imageUrl: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
+    price: 9,
+    element: "Water",
+    description: "A Water-type Pokémon that withdraws into its shell and sprays water at opponents."
+  }
 ]
 
 class PokemonStore {
@@ -45,7 +69,12 @@ class PokemonStore {
     let result = this.pokemons
 
     if (this.filter) {
-      result = result.filter(p => p.name.toLowerCase().includes(this.filter))
+      const f = this.filter.toLowerCase()
+      result = result.filter(
+        p =>
+          p.name.toLowerCase().includes(f) ||
+          p.description.toLowerCase().includes(f)
+      )
     }
 
     if (this.elementFilter) {
@@ -53,12 +82,9 @@ class PokemonStore {
     }
 
     // Filter by price range
-    if (this.minPrice !== null) {
-      result = result.filter(p => p.price >= this.minPrice)
-    }
-    if (this.maxPrice !== null) {
-      result = result.filter(p => p.price <= this.maxPrice)
-    }
+    const min = this.minPrice ?? 0
+    const max = this.maxPrice ?? Infinity
+    result = result.filter(p => p.price >= min && p.price <= max)
 
     return result
   }
