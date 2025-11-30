@@ -53,10 +53,12 @@ const PokemonCard: FC<PokemonCardProps> = observer(({ name, imageUrl, price }) =
           </div>
         </div>
       ) : (
-        <p style={{ color: "gray" }}>Not in Cart</p>
+        <p style={{ color: "gray" }}>Not in Cart 
+        <button onClick={handleAddToCart}>Add Item</button>
+        </p>
+        
       )}
 
-      <button onClick={handleAddToCart}>Add Item</button>
       {cartItem && <button onClick={handleRemoveFromCart}>Remove All</button>}
     </div>
   )

@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react-lite'
 import { cartStore } from './cartStore'
 import type { CartItem } from '../types/cart'
+import { Link } from 'react-router-dom'
 
 const Cart = observer(() => {
   const handleIncrement = (item: CartItem) => {
@@ -25,8 +26,9 @@ const Cart = observer(() => {
         <ul>
           {cartStore.items.map(item => (
             <li key={item.name}>
+              <Link to={`/pokemon/${item.name}`}>
               <img src={item.imageUrl} alt={item.name} width={50} />
-              <span>{item.name}</span>
+              <span>{item.name}</span></Link>
               <span>Qty: {item.quantity}</span>
               <span>Price: ${item.price}</span>
               <button onClick={() => handleIncrement(item)}>+</button>
