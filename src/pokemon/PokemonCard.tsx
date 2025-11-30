@@ -10,10 +10,32 @@ interface PokemonCardProps {
 }
 
 const PokemonCard: FC<PokemonCardProps> = observer(({ name, imageUrl, price }) => {
+  const cartItem = cartStore.items.find(i => i.name === name)
+
   const handleAddToCart = () => {
     cartStore.addItem({ name, imageUrl, price, quantity: 1 })
   }
-  const cartItem = cartStore.items.find(i => i.name === name)
+
+  const handleRemoveFromCart = () => {
+    cartStore.removeItem(name)
+  }
+
+  const handleIncrement = () => {
+    cartStore.addItem({ name, imageUrl, price, quantity: 1 })
+  }
+
+  const handleDecrement = () => {
+    if (cartItem) {
+      if (cartItem.quantity > 1) {
+        // reduce quantity by 1
+        cartItem.quantity -= 1
+        cartStore.save()
+      } else {
+        // remove completely if quantity goes to 0
+        cartStore.removeItem(name)
+      }
+    }
+  }
 
   return (
     <div className="pokemon-card" style={{ border: "1px solid #ccc", padding: "10px", margin: "10px" }}>
@@ -23,12 +45,19 @@ const PokemonCard: FC<PokemonCardProps> = observer(({ name, imageUrl, price }) =
       </Link>
       <p>Price: ${price}</p>
       {cartItem ? (
-        <p style={{ color: "green" }}>In Cart: {cartItem.quantity}</p>
+        <div style={{ color: "green" }}>
+          In Cart: {cartItem.quantity}
+          <div>
+            <button onClick={handleDecrement}>–</button>
+            <button onClick={handleIncrement}>+</button>
+          </div>
+        </div>
       ) : (
         <p style={{ color: "gray" }}>Not in Cart</p>
       )}
 
       <button onClick={handleAddToCart}>Add Item</button>
+      {cartItem && <button onClick={handleRemoveFromCart}>Remove All</button>}
     </div>
   )
 })
